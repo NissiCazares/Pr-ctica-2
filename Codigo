@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+
+
+int ConfiguraIdioma() //función para configurar idioma
+{
+	struct lconv *lcPtr;
+	setlocale(LC_ALL, "spanish");
+	lcPtr = localeconv();
+	
+	lcPtr->decimal_point = ".";
+	lcPtr->thousands_sep = ",";
+	lcPtr->grouping = "3";
+}
+
+int main ()
+{
+	
+	int opcion;
+ 	ConfiguraIdioma();
+	//enteros
+	int ID, trab, pacientes, camas, salas, elevadores, edificios, extension, raking, fila, pagina, BD;
+	long long tampag, tamBD=0;
+	//char
+	int nombre, direccion, especialidad, horario, telefono, correo, pagweb, director, apertura;
+	//boolean
+	bool publico;
+	
+	//valor de cada variable según su tipo
+	ID=2;
+	pacientes=2;
+	camas=2;
+	salas=2;
+	elevadores=2;
+	edificios=2;
+	extension=2;
+	raking=2;
+	nombre=100;
+	direccion=100;
+	especialidad=100;
+	horario=100;
+	telefono=15;
+	correo=80;
+	pagweb=100;
+	director=100;
+	apertura=24;
+	publico=1;
+	
+	//calculamos el tamaño de una fila
+	fila= (ID+pacientes+camas+salas+elevadores+edificios+extension+raking+nombre+direccion+especialidad+horario+telefono+correo+pagweb+director+apertura+publico);
+
+	printf("¿Cuantas filas contiene una pagina de su base de datos?\t");
+	scanf("%d",&pagina);
+	//tamaño de una pagina
+	tampag = pagina*fila;
+
+	
+	printf("\n¿Cuantos registros tiene su base de datos?\t");
+	scanf("%d",&BD);
+
+	//tamaño de la BD
+	tamBD= BD*tampag;
+
+	
+	printf("\n\nSu base de datos tiene: \nfilas de tamaño %d bytes, \npaginas con un tamaño cada una de %d bytes, \ny la base de datos tiene un tamaño total de %I64d bytes",fila, tampag,tamBD);	
+	
+}
